@@ -83,9 +83,9 @@ pip install biopython
 <!-- CONTACT -->
 ## Contact
 
-[Roy Rabinowitz](rabinowitz.roy@gmail.com) - royr2@mail.tau.ac.il
+Roy Rabinowitz (rabinowitz.roy@gmail.com) - royr2@mail.tau.ac.il
 
-[Shiri Almog](shirialmog1@gmail.com)  -shirialmog1@gmail.com
+[Shiri Almog](shirialmog1@gmail.com)  - shirialmog1@gmail.com
 
 Website: [http://danioffenlab.pythonanywhere.com](http://danioffenlab.pythonanywhere.com)
 
