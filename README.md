@@ -37,7 +37,7 @@ The 2 main scripts are:
 This is the main script of the website. It receives a single SNV, via 3 possible methods: <br> 
 
 * <i> Manually entered by user:</i> <br> Here you must enter a 51-nt long DNA sequence, 25 nt upstream to the mutation and 25 nt downstream, as well as the variation and the reading frame. 
-![method1](method1.PNG)
+![method1](files/method1.PNG)
  
 * <i> Fetched by given rsID: </i> Enters a known rsID. You will then be presented with a table containing all the possible variations. Once you selects one of the options, it will automatically be inserted into the format in (a). 
 ![method2](method2.PNG)
