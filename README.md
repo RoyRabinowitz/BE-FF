@@ -80,6 +80,12 @@ git clone https://github.com/RoyRabinowitz/BE-FF
 pip install biopython 
 ```
 
+## Edit the base editors list
+To change the base editors used for analysis and their properties, open the baseEditorsTable.py file [Scripts/baseEditorsTable.py](Scripts/baseEditorsTable.py)
+The base editors are categorized according to their type - CBEs and ABEs. 
+Minor editing windows are indicated in a designated dictionary, following the main dictionary. 
+
+
 <!-- CONTACT -->
 ## Contact
 
