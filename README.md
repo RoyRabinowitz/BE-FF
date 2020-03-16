@@ -42,7 +42,7 @@ This is the main script of the website. It receives a single SNV, via 3 possible
 * <i> Fetched by given rsID: </i> Enters a known rsID. You will then be presented with a table containing all the possible variations. Once you selects one of the options, it will automatically be inserted into the format in (a). 
 ![method2](files/method2.PNG)
 
-* <i> Fetche by genomic coordinates: </i> You may select a genome, chromosome number, mutation position, variation, and reading frame, which will be inserted into the format in (a).
+* <i> Fetch by genomic coordinates: </i> You may select a genome, chromosome number, mutation position, variation, and reading frame, which will be inserted into the format in (a).
 ![method3](files/method3.PNG) 
 
 **Note: Only one of these methods is required each time. **
