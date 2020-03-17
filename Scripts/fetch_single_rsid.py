@@ -98,8 +98,8 @@ def get_snp(snp_id, temp_dir):
 	return all_snps
 
 
-# if __name__ == '__main__':
-# 	snp_id = "rs397515468"
-# 	temp_dir = ""
-# 	snp_info = get_snp(snp_id, temp_dir)
-# 	print (snp_info)
+if __name__ == '__main__':
+	snp_id = "rs397515468"
+	temp_dir = ""
+	snp_info = get_snp(snp_id, temp_dir)
+	print (snp_info)

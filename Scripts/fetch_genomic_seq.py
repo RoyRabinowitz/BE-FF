@@ -22,6 +22,7 @@ def get_xml_filename(genome, chrom, startpos, endpos, cache_dir):
 
 def get_dna_coordinates_xmlfile(genome, chromosome, startpos, endpos, cache_dir):
 	url = "http://genome.ucsc.edu/cgi-bin/das/{0}/dna?segment={1}:{2},{3}"
+	print (url)
 
 	#chr15:65637530,65637553"
 	current_filename = get_xml_filename(genome, chromosome, startpos, endpos, cache_dir)
@@ -48,3 +49,4 @@ def get_seq_by_orientation(seq, strand):
 		seqobject = Seq(seq, generic_dna)
 		seq = str(Seq.reverse_complement(seqobject))
 	return seq
+
