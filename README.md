@@ -37,13 +37,13 @@ The 2 main scripts are:
 This is the main script of the website. It receives a single SNV, via 3 possible methods: <br> 
 
 * <i> Manually entered by user:</i> <br> Here you must enter a 51-nt long DNA sequence, 25 nt upstream to the mutation and 25 nt downstream, as well as the variation and the reading frame. 
-![method1](method1.PNG)
+![method1](files/method1.PNG)
  
 * <i> Fetched by given rsID: </i> Enters a known rsID. You will then be presented with a table containing all the possible variations. Once you selects one of the options, it will automatically be inserted into the format in (a). 
-![method2](method2.PNG)
+![method2](files/method2.PNG)
 
 * <i> Fetche by genomic coordinates: </i> You may select a genome, chromosome number, mutation position, variation, and reading frame, which will be inserted into the format in (a).
-![method3](method3.PNG) 
+![method3](files/method3.PNG) 
 
 **Note: Only one of these methods is required each time. **
  
@@ -57,7 +57,7 @@ Such changes are synonymous substitutions and the resulted amino acid sequence w
 
 ## 2. BEMain.py
 In the main function of this script, enter a csv table of the following format:
-[Template](sample3.csv)
+[Template](files/sample3.csv)
 
 The result will be a new CSV file containing all the SNV's and the possible BE that can corect the variation. 
 
