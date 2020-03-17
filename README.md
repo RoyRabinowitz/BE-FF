@@ -37,13 +37,13 @@ The 2 main scripts are:
 This is the main script of the website. It receives a single SNV, via 3 possible methods: <br> 
 
 * <i> Manually entered by user:</i> <br> Here you must enter a 51-nt long DNA sequence, 25 nt upstream to the mutation and 25 nt downstream, as well as the variation and the reading frame. 
-![method1](files/method1.PNG)
+![method1](method1.PNG)
  
 * <i> Fetched by given rsID: </i> Enters a known rsID. You will then be presented with a table containing all the possible variations. Once you selects one of the options, it will automatically be inserted into the format in (a). 
-![method2](files/method2.PNG)
+![method2](method2.PNG)
 
-* <i> Fetch by genomic coordinates: </i> You may select a genome, chromosome number, mutation position, variation, and reading frame, which will be inserted into the format in (a).
-![method3](files/method3.PNG) 
+* <i> Fetche by genomic coordinates: </i> You may select a genome, chromosome number, mutation position, variation, and reading frame, which will be inserted into the format in (a).
+![method3](method3.PNG) 
 
 **Note: Only one of these methods is required each time. **
  
@@ -57,7 +57,7 @@ Such changes are synonymous substitutions and the resulted amino acid sequence w
 
 ## 2. BEMain.py
 In the main function of this script, enter a csv table of the following format:
-[Template](files/sample3.csv)
+[Template](sample3.csv)
 
 The result will be a new CSV file containing all the SNV's and the possible BE that can corect the variation. 
 
@@ -80,6 +80,67 @@ git clone https://github.com/RoyRabinowitz/BE-FF
 pip install biopython 
 ```
 
+
+## Main Functions Details
+
+ ### `matchBE`(snp, BElist)
+
+Recieves an snp object and returns a list of all matching BE that correct the mutation,
+as well as a dictionary with all the possible locations (may be a few locations per BE) 
+
+#### Parameters:
+
+*   **snp** – snp object, has attributes such as snp.mutation, snp.wildtype, snp.upstream_sequence, snp.downstream_sequence
+*   **BElist** – dictionary of the shape   
+{BE: [PAM,activation window start,activation window end, mutation,variation, upstream/downstream]} 
+
+ ### `cleanMatch`(snp,Matches, BElist,rev)
+ Finds BE that will result in a prefect correction or a synonymous one (i.e. same smino acid)
+
+#### Parameters:
+*   **snp** - snp object
+*   **Matches** - list recieved from previous function
+*   **BElist** - dictionary of BE
+*   **rev** - bool. whether the PAM is found on the given DNA strand or on its reverse complement.  
+
+### `getRevComp`(snp)
+Finds reverse complement of the SNP object, including changing its attirbutes respectively 
+
+#### Parameters:
+*   **snp** - snp object
+
+### `SpecialCleanMatch`(snp, Matches, BElist, rev, orig_protein)
+Finds BE that may correct the mutation by changing a base that is not the mutation, 
+when the final amino acid is the same as the original
+
+#### Parameters:
+*   **snp** - snp object
+*   **Matches** - list received from previous function
+*   **BElist** - dictionary of BE
+*   **rev** - bool.
+*   **orig_protein** - the original amino acid sequence, to be compared with the final one 
+
+## API
+
+### `fetch_dna_coordinates`(genome, chromosome, startpos, endpos, cache_dir)
+This function fetches sequence data, by inserting the parameters into the following url:
+"http://genome.ucsc.edu/cgi-bin/das/{0}/dna?segment={1}:{2},{3}"
+
+0 - genome
+
+1 - chromosome
+
+2- start position
+
+3 - end position
+
+#### Parameters:
+*   **genome, chromosome,start position,end position** - relevent sequence information
+*   **chache_dir** - the local directory to which the data will be saved
+
+
+
+`
 ## Edit the base editors list
 To change the base editors used for analysis and their properties, open the [Scripts/baseEditorsTable.py](Scripts/baseEditorsTable.py) file
 The base editors are categorized according to their type - CBEs and ABEs. 
@@ -98,6 +159,5 @@ Website: [http://danioffenlab.pythonanywhere.com](http://danioffenlab.pythonanyw
 Project Link: [https://github.com/RoyRabinowitz/BE-FF](https://github.com/RoyRabinowitz/BE-FF)
 
 Please visit our preprint for more information [https://www.biorxiv.org/content/10.1101/2020.01.06.890244v1](https://www.biorxiv.org/content/10.1101/2020.01.06.890244v1)
-
 
 
