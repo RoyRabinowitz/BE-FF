@@ -94,6 +94,7 @@ def cleanMatch(snp,Matches, BElist,rev):
         printPam = {}
         printRevCorSeq = {}
         finalShowSeq = {}
+        off_target={}
         for loc in locations_dic[BE]:
             protein_match = False
             locFromEnd=len(printSeq3)-loc
@@ -112,6 +113,8 @@ def cleanMatch(snp,Matches, BElist,rev):
             if num>max_num:
                 max_num=num
             ##This is for the visual output
+            a=printSeq5+snp.mutation+printSeq3
+            off_target[loc]=a[loc-19:loc+1]
             if rev==False:
                 new = new_AW
                 finalSeq = Seq(totalSeq1[0:loc - end] + str(new) + totalSeq1[loc - start+1:])
@@ -154,8 +157,8 @@ def cleanMatch(snp,Matches, BElist,rev):
             elif protein_match == True:
                 quiet_list.append(loc)
 
-        clean_dic[BE]=[origMutSeq,printPam,printRevCorSeq,finalShowSeq,PAM,clean_list,rev]
-        quiet_dic[BE]=[origMutSeq,printPam,printRevCorSeq,finalShowSeq,PAM, quiet_list,rev]
+        clean_dic[BE]=[origMutSeq,printPam,printRevCorSeq,finalShowSeq,PAM,clean_list,rev,off_target]
+        quiet_dic[BE]=[origMutSeq,printPam,printRevCorSeq,finalShowSeq,PAM, quiet_list,rev,off_target]
 
     return clean_dic,quiet_dic,origMutSeq,locations_dic,originalProtein
 ##For visual output
@@ -249,9 +252,7 @@ def find_cor(base):
         return "A"
 
 def beginningCut(snp):
-    print ('1')
     if snp.readingFrame == "1":
-        print ('2')
         if len(snp.seq5) % 3 == 1:
             snp.seq5 = snp.seq5[1:]
         elif len(snp.seq5) % 3 == 2:
@@ -271,7 +272,6 @@ def beginningCut(snp):
         snp.seq3 = snp.seq3[:-1]
     if (len(snp.seq5)+len(snp.seq3)+1) % 3 == 2:
         snp.seq3 = snp.seq3[:-2]
-    print ("beginning", snp.seq5)
     return snp
 
 def delete_chars(field):
@@ -411,7 +411,6 @@ def MainBE(upSeq, downSeq, mutation, wt, readingFrame,personalPAM,start,end,from
         check_match3=matchBE(snp3,BElist3)
     except:
         pass
-    print (rev,rev0,rev2,rev3)
     #check for clean match
     try:
         clean_dic,quiet_dic,origMutSeq, locations_dic,orig_protein= cleanMatch(snp, check_match, BElist,rev)
@@ -456,14 +455,14 @@ def MainBE(upSeq, downSeq, mutation, wt, readingFrame,personalPAM,start,end,from
             for loc in quiet_dic2[key][5]:
                 if loc not in quiet_dic[key][5]:
                     syn_quiet.update({key: quiet_dic2[key]})
-        else:
+        elif key not in syn_quiet:
             syn_quiet.update({key: quiet_dic2[key]})
     for key in quiet_dic3:
         if key in quiet_dic:
             for loc in quiet_dic3[key][5]:
                 if loc not in quiet_dic[key][5]:
                     syn_quiet.update({key:quiet_dic3[key]})
-        else:
+        elif key not in syn_quiet:
             syn_quiet.update({key: quiet_dic3[key]})
     try:
         return clean_dic, quiet_dic,refSeq,mutSeq, origMutSeq,locations_dic,syn_quiet,minor_clean_list,minor_quiet_list
